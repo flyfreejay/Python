@@ -17,11 +17,15 @@ def pet_detail(request, id):
     return render(request, 'pet_detail.html',{'pet':pet})
 
 def getting_input(request):
-    # pets = Pet.objects.all()
-    # print(request.GET)
-    # print(request.POST)
+    
+    # print(request)
+    print(request.method)
+    
+    
     if request.method == "POST":
-        title = request.POST.get('title')
-        print(title)
-        context = {}
-        return render(request,  'getting_input.html',context)
+        data = request.POST.dict()
+        text = data.get("text")
+        print(text)
+        return HttpResponse("This is a post request")
+    context = {}
+    return render(request,  'getting_input.html',context)
